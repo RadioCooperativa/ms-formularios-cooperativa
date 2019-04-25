@@ -6,5 +6,4 @@ module.exports = joi.object().keys({
   offset: joi.number().default(0),
   limitt: joi.number().default(100),
 
- 
 });

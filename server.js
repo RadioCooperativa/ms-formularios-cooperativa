@@ -47,8 +47,8 @@ server.use(validator.paramValidation(joi));
 handler.register(server);
 
 // Setup route Handling
-const tasaRouters = require('./routers/v1/formulario-routers');
-tasaRouters.register(server);
+const formularioRouters = require('./routers/v1/formulario-routers');
+formularioRouters.register(server);
 
 
 const cors = corsMiddleware({
