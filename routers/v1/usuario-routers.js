@@ -1,9 +1,9 @@
 'use strict';
-var methods = require('../../src/controllers/formulario-methods');
+var methods = require('../../src/controllers/usuario-methods');
 
 module.exports.register = (server) => {
     server.get({
-        path: '/formulario-api/formulario/',
+        path: '/usuario/',
         version: '1.0.0',
         // validation: {
         //     params: require('../../src/validators/id')

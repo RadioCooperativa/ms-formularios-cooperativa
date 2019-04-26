@@ -1,14 +1,13 @@
 require('dotenv').config({ path: 'env.env' });
 
-const formServices = require('../database/formulario-db');
+const userServices = require('../database/usuario-db');
 const httpStatus = require('http-status');
 const constants = require('../../common/const');
 
 let _get = async function (req, res, next) {
     try {
-        res.setHeader('Content-type', 'application/json');
 
-        let result = await formServices.getForm(req,res);
+        let result = await userServices.getForm(req,res);
         if (result == null) {
             res.json(httpStatus.NOT_FOUND);
             res.end();

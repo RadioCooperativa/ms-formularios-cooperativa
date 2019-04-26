@@ -47,14 +47,14 @@ server.use(validator.paramValidation(joi));
 handler.register(server);
 
 // Setup route Handling
-const formularioRouters = require('./routers/v1/formulario-routers');
+const formularioRouters = require('./routers/v1/usuario-routers');
 formularioRouters.register(server);
 
 
 const cors = corsMiddleware({
   preflightMaxAge: 5,
   origins: ['http://localhost:5001'],
-  allowHeaders: ['Authorization', 'Formulario-T1'],
+  allowHeaders: ['Authorization'],
   allowMethods: ['*'],
   exposeHeaders: ['API-Token-Expiry']
 });
