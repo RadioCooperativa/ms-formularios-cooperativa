@@ -11,6 +11,15 @@ module.exports.register = (server) => {
     },
         methods.get
     );
+    server.get({
+        path: '/usuario/:id',
+        version: '1.0.0',
+        // validation: {
+        //     params: require('../../src/validators/id')
+        // },
 
+    },
+    methods.getId
+    );
 
 }

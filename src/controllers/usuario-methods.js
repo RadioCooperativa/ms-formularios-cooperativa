@@ -6,8 +6,23 @@ const constants = require('../../common/const');
 
 let _get = async function (req, res, next) {
     try {
+        let result = await userServices.getUser();
+        if (result == null) {
+            res.json(httpStatus.NOT_FOUND);
+            res.end();
+            return;
+        }
+        res.json(httpStatus.OK, result);
+        res.end();
+    } catch (err) {
+        res.send(httpStatus.INTERNAL_SERVER_ERROR, JSON.stringify({Error: httpStatus.INTERNAL_SERVER_ERROR, Message: constants.Error.INTERNALERROR}) );
+    }
+};
 
-        let result = await userServices.getForm(req,res);
+let _getId = async function (req, res, next) {
+    try {
+        const id = req.params.id
+        let result = await userServices.getUserId(id);
         if (result == null) {
             res.json(httpStatus.NOT_FOUND);
             res.end();
@@ -24,4 +39,5 @@ let _get = async function (req, res, next) {
 
 module.exports = {
     get: _get,
+    getId: _getId,
 }

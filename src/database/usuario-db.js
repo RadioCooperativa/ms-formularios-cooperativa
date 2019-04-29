@@ -18,6 +18,19 @@ async function get(){
 
 }
 
+async function getId(id){
+    let idUser = id;
+
+    let query = 'SELECT * FROM T_USUARIOS WHERE ID_USUARIO = '+idUser+'';  
+    const result = await pool.query(query);
+
+    if (!result[0]) {
+        throw new Error('Post with this id was not found');
+      }
+      return result[0];
+}
+
 module.exports = {
-    getForm: get,
+    getUser: get,
+    getUserId: getId,
 }
