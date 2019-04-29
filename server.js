@@ -47,14 +47,14 @@ server.use(validator.paramValidation(joi));
 handler.register(server);
 
 // Setup route Handling
-const tasaRouters = require('./routers/v1/formulario-routers');
-tasaRouters.register(server);
+const uruarioRouters = require('./routers/v1/usuario-routers');
+uruarioRouters.register(server);
 
 
 const cors = corsMiddleware({
   preflightMaxAge: 5,
   origins: ['http://localhost:5001'],
-  allowHeaders: ['Authorization', 'Formulario-T1'],
+  allowHeaders: ['Authorization'],
   allowMethods: ['*'],
   exposeHeaders: ['API-Token-Expiry']
 });

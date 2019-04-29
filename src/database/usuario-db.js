@@ -1,24 +1,23 @@
 'use strict';
-const mysql = require('mysql');
-const dbConfig = require('../../common/configDb');
+const mysql = require('mysql2/promise');
+const configDb = require('../../common/configDb');
 const constants = require('../../common/const');
 const enums = require('../../common/enums');
 
-async function get(params){
-    const pool = await mysql.createPool(dbConfig);
-    let query = '';
+const pool = mysql.createPool(configDb.db);
 
-    pool.query(query,(err,data) => {
+async function get(){
+    
+    let query = 'SELECT * FROM t_usuarios'
+    const result = await pool.query(query);
 
-        if(err){
-            console.error(err);
-            return false;
-        }
-        return data;
-    });
+    if (!result[0]) {
+        throw new Error('Post with this id was not found');
+      }
+      return result[0];
+
 }
 
 module.exports = {
-    get: get
+    getForm: get,
 }
-

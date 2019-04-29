@@ -1,5 +1,5 @@
 'use strict';
-var methods = require('../../src/controllers/formulario-methods');
+var methods = require('../../src/controllers/usuario-methods');
 
 module.exports.register = (server) => {
     server.get({
