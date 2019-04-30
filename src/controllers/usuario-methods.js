@@ -36,6 +36,18 @@ let _getId = async function (req, res, next) {
     }
 };
 
+let _insert = async function (req, res, next){
+    try{
+        const {id_tipo_usuario, nombre_usuario, pass_usuario, descricpion_usuario} = req.params;
+        
+
+    }catch(err){
+        res.send(httpStatus.INTERNAL_SERVER_ERROR, JSON.stringify({Error: httpStatus.INTERNAL_SERVER_ERROR, Message: constants.Error.INTERNALERROR}) );
+
+    }
+
+}
+
 
 module.exports = {
     get: _get,
