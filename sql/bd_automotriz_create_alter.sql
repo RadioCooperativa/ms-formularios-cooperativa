@@ -1,6 +1,5 @@
 CREATE TABLE T_MARCA(
-	id_marca				int not null,
-	id_modelo				int not null,
+	id_marca				int not null AUTO_INCREMENT,
 	nombre_marca 			varchar(100) null,
 	descripcion_marca 		varchar(100) null,
 	fecha_creacion 			date null,
@@ -12,9 +11,10 @@ CREATE TABLE T_MARCA(
 )ENGINE=InnoDb;
 
 CREATE TABLE T_MODELO(
-	id_modelo				int not null,
+	id_modelo				int not null AUTO_INCREMENT,
 	nombre_modelo			varchar(100) null,
 	descripcion_modelo		varchar(100) null,
+	id_marca				int not null,
 	fecha_creacion 			date null,
   	fecha_modificacion 		date null,
   	usuario_creacion 		int null,

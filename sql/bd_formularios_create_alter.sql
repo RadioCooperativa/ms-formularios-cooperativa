@@ -72,7 +72,6 @@ CREATE TABLE T_CLIENTES(
 	id_cliente				int not null AUTO_INCREMENT,
 	nombre_cliente 			varchar(100) null,
 	descripcion_cliente		varchar(200) null,
-	id_usuario				int not null,
 	fecha_creacion 			date null,
   	fecha_modificacion 		date null,
   	usuario_creacion 		int null,
@@ -125,7 +124,7 @@ CREATE TABLE T_FORMULARIO_T_PERSONAS(
 CREATE TABLE T_FORMULARIOS(
 	id_formulario			int not null AUTO_INCREMENT,
 	id_tipo_formulario		int not null,
-	id_usuario 				int not null,
+	id_cliente 				int not null,
 	nombre_formulario 		varchar(150) null,
 	descripcion_formulario 	varchar(200) null,
 	nombre_sitio_web		varchar(20) null,
@@ -169,8 +168,6 @@ REFERENCES T_PROVINCIA (id_provincia);
 ALTER TABLE T_DIRECCION    ADD  CONSTRAINT FK_T_DIRECCION_COMUNA FOREIGN KEY(id_comuna)
 REFERENCES T_COMUNA (id_comuna);
 
-ALTER TABLE T_CLIENTES    ADD  CONSTRAINT FK_CLIENTE_T_USUARIO FOREIGN KEY(id_usuario)
-REFERENCES T_USUARIOS (id_usuario);
 
 ALTER TABLE T_USUARIOS    ADD  CONSTRAINT FK_T_USUARIOS_TIPO_USUARIO FOREIGN KEY(id_tipo_usuario)
 REFERENCES T_TIPO_USUARIO (id_tipo_usuario);
@@ -183,6 +180,9 @@ REFERENCES T_USUARIOS (id_usuario);
 
 ALTER TABLE T_FORMULARIOS  ADD  CONSTRAINT FK_T_FORMULARIOS_T_TIPO_FORMULARIOS FOREIGN KEY(id_tipo_formulario)
 REFERENCES T_TIPO_FORMULARIOS (id_tipo_formulario);
+
+ALTER TABLE T_FORMULARIOS  ADD  CONSTRAINT FK_T_FORMULARIOS_T_CLIENTES FOREIGN KEY(id_cliente)
+REFERENCES T_CLIENTES (id_cliente);
 
 ALTER TABLE T_FORMULARIO_T_PERSONAS    ADD  CONSTRAINT FK_T_FORMULARIO_T_PERSONAS FOREIGN KEY(id_persona)
 REFERENCES T_PERSONAS (id_persona);
