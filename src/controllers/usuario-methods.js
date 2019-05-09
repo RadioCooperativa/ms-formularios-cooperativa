@@ -38,18 +38,65 @@ let _getId = async function (req, res, next) {
 
 let _insert = async function (req, res, next){
     try{
-        const {id_tipo_usuario, nombre_usuario, pass_usuario, descricpion_usuario} = req.params;
-        
+        const { params } = req;
+        let result = await userServices.insertUser(params);
 
+        if(result == null){
+            res.json(httpStatus.NOT_FOUND);
+            res.end();
+            return;
+        }
+        res.json(httpStatus.OK, result);
+        res.end();
+        
     }catch(err){
         res.send(httpStatus.INTERNAL_SERVER_ERROR, JSON.stringify({Error: httpStatus.INTERNAL_SERVER_ERROR, Message: constants.Error.INTERNALERROR}) );
 
     }
+};
 
-}
+let _update = async function (req, res, next){
+    try{
+        const { params } = req;
+        let result = await userServices.updateUser(params);
+        
+        if(result == null){
+            res.json(httpStatus.NOT_FOUND);
+            res.end();
+            return;
+        }
+        res.json(httpStatus.NO_CONTENT);
+        res.end();
+        
+    }catch(err){
+        res.send(httpStatus.INTERNAL_SERVER_ERROR, JSON.stringify({Error: httpStatus.INTERNAL_SERVER_ERROR, Message: constants.Error.INTERNALERROR}) );
 
+    }
+};
+
+let _delete = async function (req, res, next){
+    try{
+        const { params:{id} } = req;
+        let result = await userServices.deleteUser(id);
+        
+        if(result.affectedRows == 0){
+            res.json(httpStatus.NOT_FOUND);
+            res.end();
+            return;
+        }
+        res.json(httpStatus.OK);
+        res.end();
+        
+    }catch(err){
+        res.send(httpStatus.INTERNAL_SERVER_ERROR, JSON.stringify({Error: httpStatus.INTERNAL_SERVER_ERROR, Message: constants.Error.INTERNALERROR}) );
+
+    }
+};
 
 module.exports = {
     get: _get,
     getId: _getId,
+    insertUser: _insert,
+    updateUser: _update,
+    deleteUser: _delete
 }

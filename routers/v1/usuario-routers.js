@@ -25,7 +25,26 @@ module.exports.register = (server) => {
         //     params: require('../../src/validators/id')
         // },
     },
-    //methods.getId
+    methods.insertUser
     );
 
+    server.put({
+        path: '/usuario/:id',
+        version: '1.0.0',
+        // validation: {
+        //     params: require('../../src/validators/id')
+        // },
+    },
+    methods.updateUser
+    );
+
+    server.del({
+        path: '/usuario/:id',
+        version: '1.0.0',
+        // validation: {
+        //     params: require('../../src/validators/id')
+        // },
+    },
+    methods.deleteUser
+    );
 }
