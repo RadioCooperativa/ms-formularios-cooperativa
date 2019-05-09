@@ -12,7 +12,7 @@ async function get(){
     const result = await pool.query(query);
 
     if (!result[0]) {
-        throw new Error('Post with this id was not found');
+        throw new Error('GET with this id was not found');
       }
       return result[0];
 
@@ -24,7 +24,7 @@ async function getId(id){
     const result = await pool.query(query);
 
     if (!result[0]) {
-        throw new Error('Post with this id was not found');
+        throw new Error('GET with this id was not found');
       }
       return result[0];
 }
@@ -52,7 +52,7 @@ async function updateUser(params){
     const result = await pool.query(query,[id_tipo_usuario, nombre_usuario, pass_usuario, descripcion_usuario,fecha_modificacion.fecha_modificacion, null, 0]);
 
     if (!result[0]) {
-        throw new Error('Post with this id was not found');
+        throw new Error('SET with this id was not found');
       }
       return result[0];
 }
@@ -65,7 +65,7 @@ async function deleteUser(id){
     const result = await pool.query(query,[fecha_modificacion.fecha_modificacion, null, eliminado]);
 
     if (!result[0]) {
-        throw new Error('Post with this id was not found');
+        throw new Error('DEL with this id was not found');
       }
       return result[0];
 }
