@@ -23,8 +23,8 @@ async function getId(id){
     let query = 'SELECT * FROM T_USUARIOS WHERE ID_USUARIO = '+idUser+' AND vigente = 0';  
     const result = await pool.query(query);
 
-    if (!result[0]) {
-        throw new Error('GET with this id was not found');
+    if (result[0].length === 0) {
+        return null;
       }
       return result[0];
 }
@@ -38,7 +38,7 @@ async function insertUser(params){
     const result = await pool.query(query,[id_tipo_usuario, nombre_usuario, pass_usuario, descripcion_usuario, fecha_creacion.fecha_creacion, null, null, null, 0]);
 
     if (!result[0]) {
-        throw new Error('Post with this id was not found');
+        throw new Error('Error al insertar datos');
       }
       return result[0];
 }
