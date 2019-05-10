@@ -51,8 +51,8 @@ async function updateUser(params){
 
     const result = await pool.query(query,[id_tipo_usuario, nombre_usuario, pass_usuario, descripcion_usuario,fecha_modificacion.fecha_modificacion, null, 0]);
 
-    if (!result[0]) {
-        throw new Error('SET with this id was not found');
+    if (result[0].affectedRows === 0) {
+        return null;
       }
       return result[0];
 }
@@ -64,8 +64,8 @@ async function deleteUser(id){
     let query = 'UPDATE T_USUARIOS SET fecha_modificacion = ?,  usuario_modificacion = ?, vigente = ? WHERE id_usuario = '+id+'';
     const result = await pool.query(query,[fecha_modificacion.fecha_modificacion, null, eliminado]);
 
-    if (!result[0]) {
-        throw new Error('DEL with this id was not found');
+    if (result[0].affectedRows === 0) {
+        return null;
       }
       return result[0];
 }

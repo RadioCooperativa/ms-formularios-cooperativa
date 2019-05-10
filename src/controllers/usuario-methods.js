@@ -23,7 +23,7 @@ let _getId = async function (req, res, next) {
     try {
         const id = req.params.id
         let result = await userServices.getUserId(id);
-        if (result == null) {
+        if (result === null) {
             res.json(httpStatus.NOT_FOUND);
             res.end();
             return;
@@ -41,12 +41,12 @@ let _insert = async function (req, res, next){
         const { params } = req;
         let result = await userServices.insertUser(params);
 
-        if(result == null){
+        if(result === null){
             res.json(httpStatus.NOT_FOUND);
             res.end();
             return;
         }
-        res.json(httpStatus.OK, result);
+        res.json(httpStatus.CREATED, result);
         res.end();
         
     }catch(err){
@@ -60,7 +60,7 @@ let _update = async function (req, res, next){
         const { params } = req;
         let result = await userServices.updateUser(params);
         
-        if(result == null){
+        if(result === null){
             res.json(httpStatus.NOT_FOUND);
             res.end();
             return;
@@ -79,7 +79,7 @@ let _delete = async function (req, res, next){
         const { params:{id} } = req;
         let result = await userServices.deleteUser(id);
         
-        if(result.affectedRows == 0){
+        if(result === null){
             res.json(httpStatus.NOT_FOUND);
             res.end();
             return;
