@@ -48,7 +48,10 @@ handler.register(server);
 
 // Setup route Handling
 const uruarioRouters = require('./routers/v1/usuario-routers');
+const tipoUsuarioRouters = require('./routers/v1/tipo-usuario-routers');
+
 uruarioRouters.register(server);
+tipoUsuarioRouters.register(server);
 
 
 const cors = corsMiddleware({
