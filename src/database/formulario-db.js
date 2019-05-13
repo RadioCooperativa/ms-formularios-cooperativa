@@ -120,13 +120,13 @@ try {
 
     await connection.query(queryTpaso, [lastIdPersona, lastIdFormulario]);
 
-    const result = await connection.commit();
-    return result;
+    await connection.commit();
+    return true;
+    
 
   } catch (err) {
 
     await connection.rollback();
-    // Throw the error again so others can catch it. 
     throw err;
 
   } finally {

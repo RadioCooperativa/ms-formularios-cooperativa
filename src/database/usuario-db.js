@@ -19,8 +19,7 @@ async function get(){
 }
 
 async function getId(id){
-    let idUser = id;
-    let query = 'SELECT * FROM T_USUARIOS WHERE ID_USUARIO = '+idUser+' AND vigente = 0';  
+    let query = 'SELECT * FROM T_USUARIOS WHERE ID_USUARIO = '+id+' AND vigente = 0';  
     const result = await pool.query(query);
 
     if (result[0].length === 0) {
