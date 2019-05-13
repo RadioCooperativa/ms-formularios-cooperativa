@@ -46,7 +46,7 @@ let _insert = async function (req, res, next){
             res.end();
             return;
         }
-        res.json(httpStatus.CREATED, result);
+        res.json(httpStatus.CREATED, result[0]);
         res.end();
         
     }catch(err){
