@@ -3,6 +3,7 @@ require('dotenv').config({ path: 'env.env' });
 const formServices = require('../database/formulario-db');
 const httpStatus = require('http-status');
 const constants = require('../../common/const');
+// const { getCache  } = require('../../helpers/cache/cache')
 
 let _get = async function (req, res, next) {
     try {
@@ -39,6 +40,11 @@ let _getId = async function (req, res, next) {
 let _insert = async function (req, res, next){
     try{
         const { params } = req;
+
+        // const cache = await getCache("form", null);
+        // if (cache){
+        //     console.info("cache: ",cache);
+        // }
         let result = await formServices.insertForm(params);
 
         if(result === null){
