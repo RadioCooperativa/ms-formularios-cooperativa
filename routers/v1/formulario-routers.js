@@ -18,9 +18,9 @@ module.exports.register = (server) => {
     server.post({
         path: '/formularios/',
         version: '1.0.0',
-        // validation: {
-        //     params: require('../../src/validators/usuarios/insert')
-        // },
+        validation: {
+            params: require('../../src/validators/formularios/insert')
+        },
     },
     methods.insertForm
     );
