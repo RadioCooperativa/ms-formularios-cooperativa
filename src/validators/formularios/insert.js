@@ -22,6 +22,7 @@ data:{
             },
         formulario: { 
                 id_tipo_formulario: joi.number().integer().required(),
+                id_cliente: joi.number().integer().required(),
                 nombre_formulario: joi.string().allow(null).default(null),
                 descripcion_formulario: joi.string().allow(null).default(null),
                 nombre_sitio_web: joi.string().allow(null).default(null),
