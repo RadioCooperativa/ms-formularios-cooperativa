@@ -42,12 +42,12 @@ const { id_usuario, rut_persona, nombre_completo_persona, correo_persona, telefo
 
 const { id_comuna, calle_direccion, numero_direccion, observacion_direccion, cod_postal } = direccion;
 
-const { id_tipo_formulario, nombre_formulario, descripcion_formulario, nombre_sitio_web, nuevo_valor_vehiculo, antiguo_valor_vehiculo, valor_bono_vehiculo, valor_pie_vehiculo, valor_cuota, valor_matricula, id_marca_vehiculo, id_modelo_vehiculo, id_concesionaria_vehiculo, id_sucursal_vehiculo } = formulario;
+const { id_tipo_formulario, id_cliente, nombre_formulario, descripcion_formulario, nombre_sitio_web, nuevo_valor_vehiculo, antiguo_valor_vehiculo, valor_bono_vehiculo, valor_pie_vehiculo, valor_cuota, valor_matricula, id_marca_vehiculo, id_modelo_vehiculo, id_concesionaria_vehiculo, id_sucursal_vehiculo } = formulario;
 
 
 try {
 
-    let queryFormulario = 'INSERT INTO T_FORMULARIOS SET id_tipo_formulario = ?, id_usuario = ?, nombre_formulario = ?, descripcion_formulario = ?, nombre_sitio_web = ?, nuevo_valor_vehiculo = ?, antiguo_valor_vehiculo = ?, valor_bono_vehiculo = ?, valor_pie_vehiculo = ?, valor_cuota = ?, valor_matricula = ?, id_marca_vehiculo = ?, id_modelo_vehiculo = ?, id_concesionaria_vehiculo = ?, id_sucursal_vehiculo = ?, dataJson = ?, fecha_creacion = ?, fecha_modificacion = ?, usuario_creacion = ?, usuario_modificacion = ?, vigente = ?';
+    let queryFormulario = 'INSERT INTO T_FORMULARIOS SET id_tipo_formulario = ?, id_usuario = ?, id_cliente = ?, nombre_formulario = ?, descripcion_formulario = ?, nombre_sitio_web = ?, nuevo_valor_vehiculo = ?, antiguo_valor_vehiculo = ?, valor_bono_vehiculo = ?, valor_pie_vehiculo = ?, valor_cuota = ?, valor_matricula = ?, id_marca_vehiculo = ?, id_modelo_vehiculo = ?, id_concesionaria_vehiculo = ?, id_sucursal_vehiculo = ?, dataJson = ?, fecha_creacion = ?, fecha_modificacion = ?, usuario_creacion = ?, usuario_modificacion = ?, vigente = ?';
 
     let queryPersonas = 'INSERT INTO T_PERSONAS SET id_usuario = ?, rut_persona = ?, nombre_completo_persona = ?, correo_persona = ?, telefono_persona = ?, fecha_creacion = ?, fecha_modificacion = ?, usuario_creacion = ?, usuario_modificacion = ?, vigente = ?';
 
@@ -108,7 +108,7 @@ try {
 
     let dataJson = null;
 
-    const resultForm = await connection.query(queryFormulario,[id_tipo_formulario, id_usuario, nombre_formulario, descripcion_formulario, nombre_sitio_web, nuevo_valor_vehiculo, antiguo_valor_vehiculo, valor_bono_vehiculo, valor_pie_vehiculo, valor_cuota, valor_matricula, id_marca_vehiculo, id_modelo_vehiculo, id_concesionaria_vehiculo, id_sucursal_vehiculo, dataJson, fecha_creacion.fecha_creacion, null, null, null, 0]);
+    const resultForm = await connection.query(queryFormulario,[id_tipo_formulario, id_usuario, id_cliente, nombre_formulario, descripcion_formulario, nombre_sitio_web, nuevo_valor_vehiculo, antiguo_valor_vehiculo, valor_bono_vehiculo, valor_pie_vehiculo, valor_cuota, valor_matricula, id_marca_vehiculo, id_modelo_vehiculo, id_concesionaria_vehiculo, id_sucursal_vehiculo, dataJson, fecha_creacion.fecha_creacion, null, null, null, 0]);
 
     const lastIdFormulario = resultForm[0].insertId;
 
