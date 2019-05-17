@@ -29,7 +29,7 @@ module.exports.register = (server) => {
         path: '/formularios/:id',
         version: '1.0.0',
         validation: {
-            params: require('../../src/validators/usuarios/insert')
+            params: require('../../src/validators/formularios/insert')
         },
     },
     methods.updateForm

@@ -47,13 +47,9 @@ server.use(validator.paramValidation(joi));
 handler.register(server);
 
 // Setup route Handling
-const uruarioRouters = require('./routers/v1/usuario-routers');
-const tipoUsuarioRouters = require('./routers/v1/tipo-usuario-routers');
 const tipoFormularioRouters = require('./routers/v1/tipo-formulario-routers');
 const formularioRouters = require('./routers/v1/formulario-routers');
 
-uruarioRouters.register(server);
-tipoUsuarioRouters.register(server);
 tipoFormularioRouters.register(server);
 formularioRouters.register(server);
 
