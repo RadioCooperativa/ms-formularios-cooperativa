@@ -2,7 +2,6 @@
 const joi = require('joi');
 const rutValidacion = require('./../rutExtend');
 
-
 module.exports = joi.object().keys({
 
 data:{ 
