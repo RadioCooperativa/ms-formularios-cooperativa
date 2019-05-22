@@ -3,10 +3,17 @@ require('dotenv').config({ path: 'env.env' });
 const formServices = require('../database/formulario-db');
 const httpStatus = require('http-status');
 const constants = require('../../common/const');
+const {getMarca} = require('../../helpers/interapi/ms-comun')
 // const { getCache  } = require('../../helpers/cache/cache')
 
 let _get = async function (req, res, next) {
     try {
+
+        // let resultMarca = await getMarca();
+        // if (resultMarca){
+        //     console.log("resultMarca: ", resultMarca);
+        // }
+
         let result = await formServices.getForm();
         if (result == null) {
             res.json(httpStatus.NOT_FOUND);
