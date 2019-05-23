@@ -3,16 +3,15 @@ require('dotenv').config({ path: 'env.env' });
 const formServices = require('../database/formulario-db');
 const httpStatus = require('http-status');
 const constants = require('../../common/const');
-const {getMarca} = require('../../helpers/interapi/ms-comun')
-// const { getCache  } = require('../../helpers/cache/cache')
+const getCache = require('../../helpers/cache/cache')
 
 let _get = async function (req, res, next) {
     try {
 
-        // let resultMarca = await getMarca();
-        // if (resultMarca){
-        //     console.log("resultMarca: ", resultMarca);
-        // }
+        const cache = await getCache.setCache('key-marca', null);
+        if (cache){
+            console.log("cache: ", cache);
+        }
 
         let result = await formServices.getForm();
         if (result == null) {

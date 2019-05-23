@@ -1,21 +1,24 @@
 const https = require('https');
 
-https.get('http://localhost:3002/v1/marca', (resp) => {
+    https.get('https://localhost:3002/v1/marca', (resp) => {
+    let data = '';
 
-let data = '';
+            resp.on('data',(chunk)=>{
+                data += chunk;
+            });
+            resp.on('end', () => {
+                console.log(JSON.parse(data));
+                const value = JSON.parse(data);
+                return value;
+            });
+            }).on("error", (err) => {   
+                console.log("Error: " + err.message);
+            });
 
-    resp.on('data',(chunk)=>{
-        data += chunk;
-        });
+module.exports = {
+    getMarca,
+}
 
-    resp.on('end', () => {
-        console.log(JSON.parse(data));
-        });
-
-    }).on("error", (err) => {
-        console.log("Error: " + err.message);
-
-});
 
 
    
