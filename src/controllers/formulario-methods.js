@@ -3,24 +3,31 @@ require('dotenv').config({ path: 'env.env' });
 const formServices = require('../database/formulario-db');
 const httpStatus = require('http-status');
 const constants = require('../../common/const');
-const getCache = require('../../helpers/cache/cache')
+const cacheApiMarca = require('../../helpers/cache/cache')
 
 let _get = async function (req, res, next) {
     try {
 
-        const cache = await getCache.setCache('key-marca', null);
-        if (cache){
-            console.log("cache: ", cache);
-        }
+        const cache = await cacheApiMarca.getCacheMarca('key-marca');
+        const result = await formServices.getForm();
 
-        let result = await formServices.getForm();
-        if (result == null) {
-            res.json(httpStatus.NOT_FOUND);
-            res.end();
-            return;
-        }
-        res.json(httpStatus.OK, result);
-        res.end();
+            if (cache.data){
+                if (result == null) {
+                        res.json(httpStatus.NOT_FOUND);
+                        res.end();
+                        return;
+                    }else{
+                        const cacheData = cache.data
+                        const dataMap = cacheData.map(function(e){
+                            console.log("e: ",e.id_marca);
+                        })
+                        console.log("cache: ", cacheData);
+                        console.log("result: ", result);
+
+                        res.json(httpStatus.OK, cacheData);
+                    }
+            }
+
     } catch (err) {
         res.send(httpStatus.INTERNAL_SERVER_ERROR, JSON.stringify({Error: httpStatus.INTERNAL_SERVER_ERROR, Message: constants.Error.INTERNALERROR}) );
     }
@@ -47,10 +54,6 @@ let _insert = async function (req, res, next){
     try{
         const { params } = req;
 
-        // const cache = await getCache("form", null);
-        // if (cache){
-        //     console.info("cache: ",cache);
-        // }
         let result = await formServices.insertForm(params);
 
         if(result === null){

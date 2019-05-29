@@ -1,24 +1,18 @@
-const https = require('https');
+const fetch = require('node-fetch');
 
-    https.get('https://localhost:3002/v1/marca', (resp) => {
-    let data = '';
+const URL_BASE = "http://localhost:3002/v1/";
 
-            resp.on('data',(chunk)=>{
-                data += chunk;
-            });
-            resp.on('end', () => {
-                console.log(JSON.parse(data));
-                const value = JSON.parse(data);
-                return value;
-            });
-            }).on("error", (err) => {   
-                console.log("Error: " + err.message);
-            });
-
-module.exports = {
-    getMarca,
+async function getMarca()
+{
+    try
+    {
+        let response_1 = await fetch(`${URL_BASE}marca/`);
+        return response_1.json();
+    }
+    catch(Error)
+    {
+        console.error(Error);
+    }
 }
 
-
-
-   
+module.exports = {getMarca,}

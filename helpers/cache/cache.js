@@ -1,19 +1,26 @@
-const nodeCache = require( "node-cache" );
-const myCache = new nodeCache();
-const getMarca = require('../../helpers/interapi/ms-comun');
+const NodeCache = require( "node-cache" );
+const myCache = new NodeCache();
+const getApiMarca = require('../../helpers/interapi/ms-comun')
 
-async function setCache(key, value){
-    const value_ = await getMarca.getMarca();
-    const cachedValue = myCache.set(key, value_);
-        if (cachedValue != undefined) {
-            return cachedValue;
-            } else {
-                const resutl = await myCache.get(key,true);
-                return resutl;
+async function getCacheMarca(key)
+{
+    try
+    {
+        let response = await myCache.get(key);
+            if(response == undefined){
+                const marca = await getApiMarca.getMarca();
+                myCache.set(key,marca,3600);
+                return marca;
+            }else{
+                console.log( response );
+                return response;
+            }
     }
-    
+    catch(Error)
+    {
+        console.error(Error);
+    }
+
 }
 
-module.exports = {
-    setCache,
-};
+module.exports = {getCacheMarca,}
