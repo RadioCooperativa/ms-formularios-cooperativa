@@ -4,6 +4,8 @@ const formServices = require('../database/formulario-db');
 const httpStatus = require('http-status');
 const constants = require('../../common/const');
 const cacheApiMarca = require('../../helpers/cache/cache')
+const mapMarca = require('../../helpers/map/map')
+
 
 let _get = async function (req, res, next) {
     try {
@@ -18,13 +20,9 @@ let _get = async function (req, res, next) {
                         return;
                     }else{
                         const cacheData = cache.data
-                        const dataMap = cacheData.map(function(e){
-                            console.log("e: ",e.id_marca);
-                        })
-                        console.log("cache: ", cacheData);
-                        console.log("result: ", result);
+                        const map = await mapMarca.map(result,cacheData)
+                        res.json(httpStatus.OK, map);
 
-                        res.json(httpStatus.OK, cacheData);
                     }
             }
 
