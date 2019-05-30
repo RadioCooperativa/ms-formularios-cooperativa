@@ -11,8 +11,8 @@ async function get(){
     let query = 'SELECT * FROM T_FORMULARIOS WHERE vigente = 0'
     const result = await pool.query(query);
 
-    if (!result[0]) {
-        throw new Error('GET with this id was not found');
+    if (result[0].length == 0) {
+        return null;
       }
       return result[0];
 

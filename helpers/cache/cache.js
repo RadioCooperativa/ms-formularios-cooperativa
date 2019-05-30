@@ -20,7 +20,6 @@ async function getCacheMarca(key)
     {
         console.error(Error);
     }
-
 }
 
 module.exports = {getCacheMarca,}
