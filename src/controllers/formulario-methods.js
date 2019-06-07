@@ -3,25 +3,24 @@ require('dotenv').config({ path: 'env.env' });
 const formServices = require('../database/formulario-db');
 const httpStatus = require('http-status');
 const constants = require('../../common/const');
-const cacheApiMarca = require('../../helpers/cache/cache')
-const mapMarca = require('../../helpers/map/map')
+const cacheApiMainData = require('../../helpers/cache/cache')
+const mapMainData = require('../../helpers/map/map')
 
 
 let _get = async function (req, res, next) {
     try {
 
-        const cache = await cacheApiMarca.getCacheMarca('key-marca');
+        const cache = await cacheApiMainData.getCacheMainData('key-data');
         const result = await formServices.getForm();
 
-            if (cache.data){
+            if (cache){
                 if (result == null) {
                         res.json(httpStatus.NOT_FOUND);
                         res.end();
                         return;
                     }else{
-                        const cacheData = cache.data
-                        const map = await mapMarca.map(result,cacheData)
-                        res.json(httpStatus.OK, map);
+                        const maping = await mapMainData.map(result,[cache])
+                        res.json(httpStatus.OK, maping);
 
                     }
             }

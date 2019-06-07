@@ -6,7 +6,7 @@ async function getMarca()
 {
     try
     {
-        let response_1 = await fetch(`${URL_BASE}marca/`);
+        let response_1 = await fetch(`${URL_BASE}mainData/marca/`);
         return response_1.json();
     }
     catch(Error)
@@ -15,4 +15,30 @@ async function getMarca()
     }
 }
 
-module.exports = {getMarca,}
+async function getModelo()
+{
+    try
+    {
+        let response_1 = await fetch(`${URL_BASE}mainData/modelo/`);
+        return response_1.json();
+    }
+    catch(Error)
+    {
+        console.error(Error);
+    }
+}
+
+async function dataObject(){
+    const marca = await getMarca();
+    const modelo = await getModelo();
+
+    // const data = [];
+    // data.push(marca, modelo);
+
+    return {
+        marca,
+        modelo
+    };
+}
+
+module.exports = {dataObject}

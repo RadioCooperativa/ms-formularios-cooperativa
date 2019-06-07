@@ -1,17 +1,32 @@
-async function map(data, cacheData)
+async function map(data_, cacheData)
 {
     try
     {
             const dataMap = cacheData.map(function(e){
-                    // if(e.id_marca == data[i].id_marca_vehiculo){
-                    //             const result = Object.assign(data,cacheData);
-                    //             return result;
+
+                const { marca :{data}} = e;
+                // for(let i = 0; i<data.length; i+1){
+                //     if(data[i].id_marca == data_[i].id_marca_vehiculo){
+                                 
                             
-                    // }
-                    console.log(e);
-                    return e;
+                //     }
+                // }
+                data.forEach(element => {
+                    if(element.id_marca == 1){
+                        const nombreMarca = element.nombre_marca;
+                        const object = Object.assign(data_[0],nombreMarca);
+                        return object;
+                    }
+                });
+                    // console.log(e);
+                    // return e;
             });
         return dataMap;
+
+        // cacheData.forEach(element => {
+        //     element[0].data.modelo
+            
+        // });
         
     }
     catch(Error)
@@ -20,4 +35,4 @@ async function map(data, cacheData)
     }
 }
 
-module.exports = {map,}
+module.exports = {map}
