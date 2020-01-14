@@ -25,6 +25,7 @@ async function getId(id){
     if (result[0].length === 0) {
         return null;
       }
+      
       return result[0];
 }
 

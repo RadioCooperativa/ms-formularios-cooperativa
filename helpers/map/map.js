@@ -1,38 +1,52 @@
 async function map(data_, cacheData)
 {
-    try
-    {
-            const dataMap = cacheData.map(function(e){
-
-                const { marca :{data}} = e;
-                // for(let i = 0; i<data.length; i+1){
-                //     if(data[i].id_marca == data_[i].id_marca_vehiculo){
-                                 
-                            
-                //     }
-                // }
-                data.forEach(element => {
-                    if(element.id_marca == 1){
-                        const nombreMarca = element.nombre_marca;
-                        const object = Object.assign(data_[0],nombreMarca);
-                        return object;
+    //data_ --> formulario desde bd
+    //cacheData --> caché de modelos y marcas
+    const {marca, modelo} = cacheData;
+    const {data:dataMarca} = marca;
+    const {data:dataModelo} = modelo;
+        try
+        {
+            let dataObject = {};
+            let finalDataObject = [];
+             data_.map( function(e){
+                    dataObject = {
+                        id_formulario: e.id_formulario,
+                        nombre_formulario: e.nombre_formulario,
+                        sitio_web: e.nombre_sitio_web,
+                        antiguo_valor_vehiculo: e.antiguo_valor_vehiculo
+                    }
+                 dataMarca.map(function (f){
+                        if(e.id_marca_vehiculo === f.id_marca){
+                            const objectMarca = {
+                                marca:{
+                                    id_marca: f.id_marca,
+                                    nombre_marca: f.nombre_marca,
+                                    descripcion_marca: f.descripcion_marca
+                                }
+                            }
+                            Object.assign(dataObject,objectMarca)
+                        }
+                });  
+                dataModelo.map(function (f){
+                    if(e.id_modelo_vehiculo === f.id_modelo){
+                        const objectModelo = {
+                            modelo:{
+                                id_modelo: f.id_modelo,
+                                nombre_modelo: f.nombre_modelo,
+                                descripcion_modelo: f.descripcion_modelo
+                            }
+                        }
+                        Object.assign(dataObject,objectModelo)
                     }
                 });
-                    // console.log(e);
-                    // return e;
+                finalDataObject.push(dataObject);
             });
-        return dataMap;
-
-        // cacheData.forEach(element => {
-        //     element[0].data.modelo
-            
-        // });
-        
+            return finalDataObject;
     }
     catch(Error)
     {
         console.error(Error);
     }
 }
-
 module.exports = {map}
